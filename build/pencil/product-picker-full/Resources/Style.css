@@ -1,0 +1,196 @@
+body {
+	margin:0;
+	padding:0;
+	font-family:verdana,geneva,lucida,'lucida grande',arial,helvetica,sans-serif;
+	font-size:12px;
+	height:100%;
+}
+.noborder {
+	border:0 none;
+}
+/*Navigation tab */
+.tabmenu {
+    border-bottom:1px solid black;
+    color:#000000;
+    margin:0;
+    padding:3px 0 0;
+    text-align:center;
+    z-index:1;
+    height:20px;
+    _height:17px;
+    |height:19px;
+    padding-left:20px;
+}
+.tabmenu li {
+    -moz-background-clip:padding;
+    -moz-background-origin:padding;
+    -moz-border-radius-bottomleft:0;
+    -moz-border-radius-bottomright:0;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    -moz-box-shadow:0 0 2px rgba(255, 255, 255, 0.4) inset,
+                    0 4px 6px rgba(255, 255, 255, 0.4) inset,
+                    0 11px 0 -2px rgba(255, 255, 255, 0.2) inset,
+                    0 13px 8px rgba(0, 0, 0, 0.2) inset;
+    background-color:#D0E0F3;
+    border:1px solid black;
+    display:inline-table;
+    list-style-type:none;
+    margin-bottom:-1px;
+    margin-left:1px;
+    margin-top:1px;
+    overflow:hidden;
+    padding-top:0;
+    float:left;
+}
+.tabmenu a {
+    color:#002D64;
+    font-family:"Trebuchet MS",Arial,sans-serif;
+    font-size:1em;
+    margin:0 1px 0 0;
+    padding:2px 5px 0;
+    text-decoration:none;
+    white-space:nowrap;
+}
+.tabmenu li:hover {
+    background-color:#ABC7EC;
+}
+.tabmenu li.active {
+    background-color:white;
+    border-bottom:1px solid white;
+}
+.tabmenu li.active a {
+    color:black;
+}
+/*Default formatting */
+.Page {
+	padding:0 5px;
+}
+
+.MainNumber {
+	color:lightgrey;
+	display:block;
+	float:right;
+	|margin:-25px 5px 0 0 ;
+}
+.pageTitle {
+	font-size:16px;
+	border:1px solid black;
+	padding:4px;
+}
+.raster {
+	border:1px dotted lightgrey;
+	margin:10px 0;
+	width:100%;
+}
+
+
+/* PRINT STYLE */
+ @media print {
+	/* #leftpanel {
+		display:none;
+	}
+	#main {
+	height:100%;
+	margin:0;
+	width:100%;
+	overflow:visible;
+	}*/
+	.Page {
+		margin:5px;
+		padding:5px;
+		border:1px solid lightgrey;
+		page-break-after:always;
+	}
+	/**
+	 *	PRINT Stylesheet
+	 *
+	 *	First 'neutralize' all the positioning/overflow CSS added by Layout
+	 *	Then change or add cosmetic styles (borders, padding) for printing
+	 *
+	 *	MUST use "!important" for all size, position, margin & overflow rules,
+	 *	so these will 'override' styles applied to the elements by Layout
+	 */
+
+	html, body {
+		/* NEUTRALIZE 'layout container' styles */
+		overflow:	visible 	!important;
+		width:		auto		!important;
+		height:		auto		!important;
+	}
+	.ui-layout-pane ,
+	.ui-layout-resizer ,
+	.ui-layout-toggler {
+		/* NEUTRALIZE 'layout element' styles */
+		display:	none		!important; /* hide ALL by default */
+		position:	relative	!important;
+		top:		auto		!important;
+		bottom:		auto		!important;
+		left:		auto		!important;
+		right:		auto		!important;
+		width:		auto		!important;
+		height:		auto		!important;
+		overflow:	visible		!important;
+	}
+	/* SHOW ONLY the panes you want */
+	.ui-layout-pane-center {
+		display:	block		!important;
+		border:		0			!important;
+		padding:	0			!important;
+		background:	transparent	!important;
+	}
+ }
+/* NOTE STYLE */
+hr {
+	border: medium none ;
+	margin: 0pt;
+	background-color: lightgrey;
+	height: 1px;
+}
+h1 {
+	border-bottom:1px solid black;
+	font-size:16px;
+}
+h2 {
+	font-size:14px;
+	border-bottom:1px dotted;
+}
+h3 {
+	font-size:12px;
+}
+h4 {
+	font-size:10px;
+}
+/*counter*/
+body{
+	counter-reset:h1counter pagecounter;
+}
+.pageTitle {
+	counter-increment:pagecounter;
+}
+/* .pageTitle:before {
+	content:"Page " counter(pagecounter) " - ";
+} */
+h1{counter-reset:h2counter;}
+h1:before{
+	counter-increment:h1counter;
+	content:counter(h1counter)  ". " ;
+}
+
+h2 { counter-reset:h3counter;}
+h2:before{
+	counter-increment:h2counter;
+	content:counter(h1counter) "." counter(h2counter) ". " ;
+}
+
+h3 {counter-reset:h4counter}
+h3:before{
+	counter-increment:h3counter;
+	content:counter(h1counter) "." counter(h2counter) "." counter(h3counter)  ". " ;
+}
+
+h4:before
+{
+	counter-increment:h4counter;
+	content:counter(h1counter) "." counter(h2counter) "." counter(h3counter) "." counter(h4counter) ". " ;
+}
