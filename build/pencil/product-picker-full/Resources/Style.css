@@ -8,61 +8,49 @@ body {
 .noborder {
 	border:0 none;
 }
-/*Navigation tab */
-.tabmenu {
-    border-bottom:1px solid black;
-    color:#000000;
-    margin:0;
-    padding:3px 0 0;
-    text-align:center;
-    z-index:1;
-    height:20px;
-    _height:17px;
-    |height:19px;
-    padding-left:20px;
+
+/* LEFT PANEL */
+#leftpanel {
+	padding:0;
+	vertical-align:top;
+
+	position:fixed;
+	left:0;
+	top:0;
+	width:152px;
+	height:100%; /* works only if parent container is assigned a height value */
+	margin:0;
+	overflow:auto;
+	width:188px;
 }
-.tabmenu li {
-    -moz-background-clip:padding;
-    -moz-background-origin:padding;
-    -moz-border-radius-bottomleft:0;
-    -moz-border-radius-bottomright:0;
-    -moz-border-radius-topleft:5px;
-    -moz-border-radius-topright:5px;
-    -moz-box-shadow:0 0 2px rgba(255, 255, 255, 0.4) inset,
-                    0 4px 6px rgba(255, 255, 255, 0.4) inset,
-                    0 11px 0 -2px rgba(255, 255, 255, 0.2) inset,
-                    0 13px 8px rgba(0, 0, 0, 0.2) inset;
-    background-color:#D0E0F3;
-    border:1px solid black;
-    display:inline-table;
-    list-style-type:none;
-    margin-bottom:-1px;
-    margin-left:1px;
-    margin-top:1px;
-    overflow:hidden;
-    padding-top:0;
-    float:left;
+#leftpanel .ThumbContainer {
+	float:left;
+	margin:10px 0;
+	width:100%;
 }
-.tabmenu a {
-    color:#002D64;
-    font-family:"Trebuchet MS",Arial,sans-serif;
-    font-size:1em;
-    margin:0 1px 0 0;
-    padding:2px 5px 0;
-    text-decoration:none;
-    white-space:nowrap;
+
+.ThumbContainer img {
+	border:0 none;
+	width:100%;
 }
-.tabmenu li:hover {
-    background-color:#ABC7EC;
+.ThumbContainer a:hover {
+	border-color:darkBlue;
 }
-.tabmenu li.active {
-    background-color:white;
-    border-bottom:1px solid white;
+.ThumbContainer a {
+	border:1px dashed lightgrey;
+	color:grey;
+	display:block;
+	text-decoration:none;
 }
-.tabmenu li.active a {
-    color:black;
+.ThumbContainer a .number {
+	font-size:small;
 }
-/*Default formatting */
+/* MAIN PANEL */
+#main {
+	margin-left:190px;
+	overflow:auto;
+}
+
 .Page {
 	padding:0 5px;
 }
