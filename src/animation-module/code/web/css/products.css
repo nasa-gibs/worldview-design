@@ -1,0 +1,111 @@
+.products {
+    display:block;
+    float:left;
+    z-index:2;
+    min-width:286px;
+    width:286px;
+    height:65%;
+    position:absolute;
+    overflow:hidden;
+    background: rgba(40,40,40,0.85);
+    border-radius:0;
+    left:10px;
+    top:68px;
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.ui-tabs-nav {clear:both; display:inline-block; overflow:hidden; width:90%; border-radius:0;border:0; border-bottom: 3px #00457b solid; float:left;}
+.ui-tabs-nav li.layerPicker {height:100%; display:inline-block; float:left; width:20%;}
+.ui-tabs-nav li.layerPicker.ui-state-active { width: 60%; }
+
+.ui-tabs-nav li a {
+    /*border-radius: 10px 10px 0 0;*/
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 400;
+    border: none;
+    padding: 0.5em 0;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    display: block;
+}
+.ui-tabs-nav li.ui-state-default:hover a{
+    background-color:#ccc;
+}
+.ui-tabs-nav li.first.ui-state-active a {
+    background-color:#00457b;
+}
+.ui-tabs-nav li.first.ui-state-active a:hover {
+    background-color:#00457b;
+}
+
+.ui-tabs-nav li.second.ui-state-active a {
+    background-color:#906a00;
+}
+.ui-tabs-nav li.second.ui-state-active a:hover {
+    background-color:#906a00;
+}
+
+.ui-tabs-nav li.third.ui-state-active a {
+    background: rgb(99,53,45);
+}
+.ui-tabs-nav li.third.ui-state-active a:hover {
+    background: rgb(99,53,45);
+}
+
+.firstselected {
+    border-bottom: 3px #00457b solid;
+}
+
+.secondselected {
+    border-bottom: 3px #906a00 solid;
+}
+
+.thirdselected {
+    border-bottom: 3px rgb(99,53,45) solid;
+}
+
+.cats {
+    float: right;
+    margin-right:20px;
+}
+
+.productsIcon {
+    display:inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    background:url(../images/wv-icons.svg) transparent 0 -10px;
+    margin:0;
+}
+/*ul#productsHoldertabs li.ui-state-active .tab:hover i.productsIcon{
+    background-position:0 -10px;
+}*/
+/***********************************Icons***********************************/
+.icon-layers      { background-position:0 -10px; }
+ul#productsHoldertabs .tab:hover i.icon-layers {background-position:0 20px;}
+ul#productsHoldertabs li.ui-state-active .tab:hover i.icon-layers {background-position: 0 -10px;}
+.icon-download    { background-position:-30px -10px; }
+ul#productsHoldertabs .tab:hover i.icon-download    { background-position:-30px 20px; }
+ul#productsHoldertabs li.ui-state-active .tab:hover i.icon-download {background-position:-30px -10px;}
+.icon-download-alt{ background-position:-60px -10px; }
+.icon-add         { background-position:-90px -10px; }
+ul#productsHoldertabs .tab:hover i.icon-add    { background-position:-90px 20px; }
+ul#productsHoldertabs li.ui-state-active .tab:hover i.icon-add {background-position:-90px -10px;}
+.icon-add-alt     { background-position:-120px -10px; }
+
+/***********************************End Icons***********************************/
+ul#productsHoldertabs li.ui-state-active i.productsIcon {
+    margin-right: 10px;
+}
+.content {
+    height:100%;
+}
+
+@media screen and (max-device-height: 720px) and (orientation: landscape){
+}

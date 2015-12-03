@@ -1,0 +1,18 @@
+This file structure is copied from the animation branch. Some files are changed:
+
+new.ui.css
+index.html
+wv.date.anim.js
+wv.date.timeline.input.js
+
+Added new images:
+animation.svg
+export.svg/png
+export_hov.png
+flags.svg
+loop_hov.png
+loop_on.png
+loop.png/svg
+pause_hov.png
+pause.png/svg
+play.png/svg
