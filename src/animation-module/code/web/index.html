@@ -1,0 +1,343 @@
+<!doctype html>
+<!--
+  - NASA Worldview
+  -
+  = This code was originally developed at NASA/Goddard Space Flight Center for
+  - the Earth Science Data and Information System (ESDIS) project.
+  -
+  - Copyright (C) 2013 - 2014 United States Government as represented by the
+  - Administrator of the National Aeronautics and Space Administration.
+  - All Rights Reserved.
+  -
+  - Licensed under the NASA Open Source Agreement, Version 1.3
+  - http://opensource.gsfc.nasa.gov/nosa.php
+-->
+<html>
+<head>
+    <title>@OFFICIAL_NAME@</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script type="text/javascript">
+        if ( /MSIE (\d+\.\d+);/.test(navigator.userAgent) && ! /unsupported/.test(location.search) ) {
+            var version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+            if ( version < 9 ) {
+                document.location.replace("pages/unsupported_browser.html" + location.search);
+            }
+        }
+    </script>
+
+    <link rel="shortcut icon" href="brand/images/wv-icon.ico" type="image/vnd.microsoft.icon" />
+
+    <!-- meta defines -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="keywords" content="nasa, worldview, nasa worldview, eosdis worldview, satellite imagery, remote sensing, natural hazards, natural disasters, near real-time, nrt, lance, wildfire management, air quality, weather forecasting, agriculture, dust storms, smoke plumes, vegetation, severe storms, shipping, fisheries, floods, drought, oil spills">
+    <meta name="description" content="Interactive interface for browsing full-resolution, global, near real-time satellite imagery.  Supports time-critical application areas such as wildfire management, air quality measurements, and weather forecasting.  Data is generally available within three hours of observation.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-store">
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <!-- CSS resources ==================================================== -->
+
+                            <link type="text/css" rel="Stylesheet" href="ext/ui/font-awesome-4.2.0/css/font-awesome.min.css">
+
+    <!-- link.dev -->       <link type="text/css" rel="Stylesheet" href="ext/ui/jquery-ui-1.11.4/jquery-ui.css">
+    <!-- link.prod --> <!-- <link type="text/css" rel="Stylesheet" href="ext/ui/jquery-ui-1.11.4/jquery-ui.min.css"> -->
+
+                            <link type="text/css" rel="Stylesheet" href="ext/ui/iCheck-1.0.2-patch/skins/square/grey.css">
+
+    <!-- link.dev  -->      <link type="text/css" rel="Stylesheet" href="ext/ui/jquery.jscrollpane-2.0.17/jquery.jscrollpane.css">
+    <!-- link.prod --> <!-- <link type="text/css" rel="Stylesheet" href="ext/ui/jquery.jscrollpane-2.0.17/jquery.jscrollpane.min.css"> -->
+
+    <!-- link.dev  -->      <link type="text/css" rel="Stylesheet" href="ext/date/mobiscroll-2.6.0/mobiscroll.css">
+    <!-- link.prod --> <!-- <link type="text/css" rel="Stylesheet" href="ext/date/mobiscroll-2.6.0/mobiscroll.min.css"> -->
+
+    <!-- link.dev  -->      <link type="text/css" rel="Stylesheet" href="ext/tour/joyride-2.0.3-3/joyride.css">
+    <!-- link.prod --> <!-- <link type="text/css" rel="Stylesheet" href="ext/tour/joyride-2.0.3-3/joyride.min.css"> -->
+
+    <!-- link.dev  -->      <link type="text/css" rel="Stylesheet" href="ext/image/jcrop-0.9.12/jquery.Jcrop.css">
+    <!-- link.prod --> <!-- <link type="text/css" rel="Stylesheet" href="ext/image/jcrop-0.9.12/jquery.Jcrop.min.css"> -->
+
+                            <link type="text/css" rel="Stylesheet" href="ext/ui/noUiSlider-6.1.10/jquery.nouislider.css">
+                            <link type="text/css" rel="Stylesheet" href="ext/map/openlayers-3.4.0.wv1/ol.css">
+
+    <!-- link.prod --> <!-- <link type="text/css" href="css/wv.css?v=20131218215115174" rel="Stylesheet" /> -->
+
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/bank.css">
+
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.main.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.map.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.link.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.palettes.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.image.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.debug.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/projection.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.date.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/menuPicker.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/accordionPicker.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/selector.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.tour.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/products.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/indicator.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/events.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/dataDownload.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/global.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.sidebar.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.layers.options.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/new-ui.css">
+    <!-- link.dev --> <link type="text/css" rel="Stylesheet" href="css/wv.mobile.css">
+                      <link type="text/css" rel="Stylesheet" href="pages/css/wv.document.css">
+
+
+    <!-- External libraries =============================================== -->
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/main/lodash-2.4.1/lodash.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/main/lodash-2.4.1/lodash.min.js"></script> -->
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/main/jquery-2.1.4/jquery.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/main/jquery-2.1.4/jquery.min.js"></script> -->
+
+                            <script type="text/javascript" src="ext/main/jquery.migrate-1.2.1/jquery-migrate.min.js"></script>
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/main/jscache-gitba01cdc/cache.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/main/jscache-gitba01cdc/cache.min.js"></script> -->
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/image/gifshot-0.2.1/gifshot.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/image/gifshot-0.2.1/gifshot.min.js"></script> -->
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/ui/jquery-ui-1.11.4/jquery-ui.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/ui/jquery-ui-1.11.4/jquery-ui.min.js"></script> -->
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/ui/iCheck-1.0.2-patch/icheck.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/ui/iCheck-1.0.2-patch/icheck.min.js"></script> -->
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/ui/jquery.jscrollpane-2.0.17/jquery.jscrollpane.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/ui/jquery.jscrollpane-2.0.17/jquery.jscrollpane.min.js"></script> -->
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/date/mobiscroll-2.6.0/mobiscroll.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/date/mobiscroll-2.6.0/mobiscroll.min.js"></script> -->
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/tour/joyride-2.0.3-3/joyride.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/tour/joyride-2.0.3-3/joyride.min.js"></script> -->
+
+                            <script type="text/javascript" src="ext/proj/proj4js-2.3.3-1/proj4.js"></script>
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/image/jcrop-0.9.12/jquery.Jcrop.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/image/jcrop-0.9.12/jquery.Jcrop.min.js"></script> -->
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/map/openlayers-3.4.0.wv1/ol-debug.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/map/openlayers-3.4.0.wv1/ol.js"></script> -->
+
+                            <script type="text/javascript" src="ext/ui/noUiSlider-6.1.10/jquery.nouislider.min.js"></script>
+
+    <!-- link.dev  -->      <script type="text/javascript" src="ext/ui/d3/d3.js"></script>
+    <!-- link.prod --> <!-- <script type="text/javascript" src="ext/ui/d3/d3.min.js"></script> -->
+
+    <!-- link.prod --> <!-- <script type="text/javascript" src="js/wv.js?v=20131218215115174&mobile"></script> -->
+
+    <!-- link.dev --> <script type="text/javascript" src="js/edsc.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/edsc/coordinate.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/edsc/arc.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/edsc/geoutil.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/edsc/interpolation.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/edsc/spherical_polygon.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/wv.brand.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/util/wv.util.browser.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/util/wv.util.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/util/wv.util.load.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/util/wv.util.events.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/ui/wv.ui.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/ui/wv.ui.mouse.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/ui/wv.ui.indicator.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/ui/wv.ui.info.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/proj/wv.proj.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/proj/wv.proj.change.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/proj/wv.proj.model.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/proj/wv.proj.ui.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.anim.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.model.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.label.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.timeline.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.timeline.data.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.timeline.ticks.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.timeline.zoom.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.timeline.pick.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.timeline.pan.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.timeline.input.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.timeline.config.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/date/wv.date.wheels.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/layers/wv.layers.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/layers/wv.layers.metadata.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/layers/wv.layers.model.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/layers/wv.layers.sidebar.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/layers/wv.layers.active.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/layers/wv.layers.add.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/layers/wv.layers.options.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/image/wv.image.rubberband.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/image/wv.image.panel.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/palettes/wv.palettes.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/palettes/wv.palettes.legend.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/palettes/wv.palettes.model.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/data/wv.data.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/data/wv.data.cmr.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/data/wv.data.handler.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/data/wv.data.map.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/data/wv.data.model.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/data/wv.data.results.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/data/wv.data.ui.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/map/wv.map.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/map/wv.map.model.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/map/wv.map.ui.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/link/wv.link.model.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/link/wv.link.ui.js"></script>
+
+    <!-- link.dev --> <script type="text/javascript" src="js/wv.feedback.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/wv.tour.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/wv.debug.js"></script>
+    <!-- link.dev --> <script type="text/javascript" src="js/wv.main.js"></script>
+
+</head>
+
+<body class="yui-skin-sam">
+    <div data-role="page" id="app">
+        <div data-role="content">
+
+                <ul id="wv-toolbar">
+                    <li id="wv-link-button" class="wv-toolbar-button"></li>
+                    <li id="wv-proj-button" class="wv-toolbar-button"></li>
+                    <li id="wv-image-button" class="wv-toolbar-button"></li>
+                    <li id="wv-info-button" class="wv-toolbar-button"></li>
+                </ul>
+
+            <div id="wv-logo"></div>
+            <div id="productsHolder"></div>
+            <div id="wv-map" class="wv-map"></div>
+            <div id="eventsHolder"></div>
+            <div id="imagedownload"></div>
+            <div id="dlMap"></div>
+
+            <!-- ui-dialog -->
+            <div id="dialog" title="Dialog Title">
+                <!-- class is included in jquery, used so jquery-ui dialog can focus on it instead of on datepicker -->
+                <span class="ui-helper-hidden-accessible"><input type="text" readonly/></span>
+
+            </div>
+
+            <div id="timewheels" style="display:none"></div>
+
+            <section id="timeline" style="display: none">
+                <div id="timeline-header">
+                    <div id="focus-guard-1" class="focus-guard" tabindex="1"></div>
+                    <div class="input-wrapper">
+                        <div class="date-arrows date-arrow-up" data-interval="year" data-value="1">
+                          <svg width="25" height="8">
+                            <path d="M 12.5,0 25,8 0,8 z" class="uparrow"></path>
+                          </svg>
+                        </div>
+                      <input type="text" size="4" maxlength="4" class="button-input-group" id="year-input-group" tabindex="2" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.keyCode == 13 || event.keyCode == 9 || event.keyCode == 8" />
+                        <div class="date-arrows date-arrow-down" data-interval="year" data-value="-1">
+                          <svg width="25" height="8">
+                            <path d="M 12.5,0 25,8 0,8 z" class="downarrow"></path>
+                          </svg>
+                        </div>
+                    </div><!--/input-wrapper-->
+                    <div class="input-wrapper">
+                        <div class="date-arrows date-arrow-up" data-interval="month" data-value="1">
+                          <svg width="25" height="8">
+                            <path d="M 12.5,0 25,8 0,8 z" class="uparrow"></path>
+                          </svg>
+                        </div>
+                      <input type="text" size="3" maxlength="3" class="button-input-group" id="month-input-group" tabindex="3" />
+                        <div class="date-arrows date-arrow-down" data-interval="month" data-value="-1">
+                          <svg width="25" height="8">
+                            <path d="M 12.5,0 25,8 0,8 z" class="downarrow"></path>
+                          </svg>
+                        </div>
+                    </div><!--/input-wrapper-->
+                    <div class="input-wrapper">
+                        <div class="date-arrows date-arrow-up" data-interval="day" data-value="1">
+                          <svg width="25" height="8">
+                            <path d="M 12.5,0 25,8 0,8 z" class="uparrow"></path>
+                          </svg>
+                        </div>
+                      <input type="text" size="2" maxlength="2" class="button-input-group" id="day-input-group" tabindex="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.keyCode == 13 || event.keyCode == 9 || even.keyCode == 8" />
+                        <div class="date-arrows date-arrow-down" data-interval="day" data-value="-1">
+                          <svg width="25" height="8">
+                            <path d="M 12.5,0 25,8 0,8 z" class="downarrow"></path>
+                          </svg>
+                        </div>
+                    </div><!--/input-wrapper-->
+                    <div id="focus-guard-2" class="focus-guard" tabindex="5"></div>
+                    <div class="button-action-group" id="left-arrow-group" title="Click and hold to animate backwards">
+                        <svg width="24" height="30">
+                            <path
+                             d="M 10.240764,0 24,15 10.240764,30 0,30 13.759236,15 0,0 10.240764,0 z"
+                             class="arrow"></path>
+                        </svg>
+                    </div>
+                    <div class="button-action-group" id="right-arrow-group" title="Click and hold to animate forwards">
+                        <svg width="24" height="30" >
+                            <path
+                            d="M 10.240764,0 24,15 10.240764,30 0,30 13.759236,15 0,0 10.240764,0 z"
+                            class="arrow"></path>
+                        </svg>
+                    </div>
+					<div class="button-action-group" id="animate-button" title="Setup animation">
+                        <!--<i id="wv-animate" class="fa fa-film"></i>-->
+                        <svg width="37.5px" height="37.167px" id="wv-animate">
+                        <path d="M33.787,0H4.714C2.666,0,1,1.7,1,3.789v23.345c0,2.089,1.666,3.789,3.714,3.789h29.073
+    c2.047,0,3.712-1.7,3.713-3.789V3.789C37.5,1.7,35.834,0,33.787,0z M30.909,3.042h3.042V6.59h-3.042V3.042z M25.333,3.042h4.056
+    V6.59h-4.056V3.042z M19.757,3.042h4.055V6.59h-4.055V3.042z M14.18,3.042h4.056V6.59H14.18V3.042z M9.111,3.042h3.549V6.59H9.111
+    V3.042z M4.549,3.042H7.59V6.59H4.549V3.042z M7.59,27.881H4.549v-3.042H7.59V27.881z M12.66,27.881H9.111v-3.042h3.549V27.881z
+     M17.729,27.881H14.18v-3.042h3.549V27.881z M15.701,23.826H12.66v-0.055h-2.028v0.055H8.097v-0.055H6.069v0.055H5.056v-0.055H4.549
+    V8.055h13.687v15.772h-0.507v-0.056h-2.028V23.826z M23.812,27.881H19.25v-3.042h4.562V27.881z M29.389,27.881h-4.056v-3.042h4.056
+    V27.881z M33.951,27.881h-3.042v-3.042h3.042V27.881z M33.951,23.771h-0.507v0.055h-1.521v-0.055h-2.027v0.055h-2.028v-0.055H25.84
+    v0.055h-3.042v-0.055h-2.028v0.055h-0.507V8.055h13.687V23.771z" class="arrow"></path>
+                        </svg>
+                        <ul id="animate-icons">
+                            <li><img class ="dialogify" src="images/export.png" /></li>
+                            <li><img class ="dialogify" src="images/loop.png" /></li>
+                            <li><img class ="dialogify" src="images/play.png" /></li>
+                            <li><img class ="dialogify" src="images/pause.png" /></li>
+                        </ul>
+                    </div>
+                </div> <!--/timeline-header-->
+                <div id="timeline-footer">
+
+                </div><!--/timeline-footer-->
+                <div id="timeline-zoom">
+                  <!--<a class="zoom-btn" id="zoom-weeks">Weeks</a>-->
+                  <a class="zoom-btn" id="zoom-days">Days</a>
+                  <a class="zoom-btn" id="zoom-months">Months</a>
+                  <a class="zoom-btn" id="zoom-years">Years</a>
+                </div><!--/timeline-zoom-->
+                <div id="timeline-hide">
+                  <svg class="hamburger" width="10" height="9">
+                    <path d="M 0,0 0,1 10,1 10,0 0,0 z M 0,4 0,5 10,5 10,4 0,4 z M 0,8 0,9 10,9 10,8 0,8 z"></path>
+                  </svg>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    <div id="wv-tour-content"></div>
+    <div id="wv-image-top" class="wv-image-coords">top</div>
+    <div id="wv-image-right" class="wv-image-coords">right</div>
+    <div id="wv-image-bottom" class="wv-image-coords">bottom</div>
+    <div id="wv-image-left" class="wv-image-coords">left</div>
+</body>
+</html>
