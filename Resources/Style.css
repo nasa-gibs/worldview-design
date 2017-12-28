@@ -1,17 +1,17 @@
 body {
-	margin:0;
-	padding:0;
-	font-family:verdana,geneva,lucida,'lucida grande',arial,helvetica,sans-serif;
-	font-size:12px;
-	height:100%;
+margin:0;
+padding:0;
+font-family:verdana,geneva,lucida,'lucida grande',arial,helvetica,sans-serif;
+font-size:12px;
+height:100%;
 }
 .noborder {
-	border:0 none;
+border:0 none;
 }
 
 /* LEFT PANEL */
 #leftpanel {
-	padding:0;
+	padding:5px;
 	vertical-align:top;
 
 	position:fixed;
@@ -49,6 +49,7 @@ body {
 #main {
 	margin-left:190px;
 	overflow:auto;
+	padding:10px;
 }
 
 .Page {
@@ -71,63 +72,6 @@ body {
 	margin:10px 0;
 	width:100%;
 }
-
-
-/* PRINT STYLE */
- @media print {
-	/* #leftpanel {
-		display:none;
-	}
-	#main {
-	height:100%;
-	margin:0;
-	width:100%;
-	overflow:visible;
-	}*/
-	.Page {
-		margin:5px;
-		padding:5px;
-		border:1px solid lightgrey;
-		page-break-after:always;
-	}
-	/**
-	 *	PRINT Stylesheet
-	 *
-	 *	First 'neutralize' all the positioning/overflow CSS added by Layout
-	 *	Then change or add cosmetic styles (borders, padding) for printing
-	 *
-	 *	MUST use "!important" for all size, position, margin & overflow rules,
-	 *	so these will 'override' styles applied to the elements by Layout
-	 */
-
-	html, body {
-		/* NEUTRALIZE 'layout container' styles */
-		overflow:	visible 	!important;
-		width:		auto		!important;
-		height:		auto		!important;
-	}
-	.ui-layout-pane ,
-	.ui-layout-resizer ,
-	.ui-layout-toggler {
-		/* NEUTRALIZE 'layout element' styles */
-		display:	none		!important; /* hide ALL by default */
-		position:	relative	!important;
-		top:		auto		!important;
-		bottom:		auto		!important;
-		left:		auto		!important;
-		right:		auto		!important;
-		width:		auto		!important;
-		height:		auto		!important;
-		overflow:	visible		!important;
-	}
-	/* SHOW ONLY the panes you want */
-	.ui-layout-pane-center {
-		display:	block		!important;
-		border:		0			!important;
-		padding:	0			!important;
-		background:	transparent	!important;
-	}
- }
 /* NOTE STYLE */
 hr {
 	border: medium none ;
@@ -182,3 +126,22 @@ h4:before
 	counter-increment:h4counter;
 	content:counter(h1counter) "." counter(h2counter) "." counter(h3counter) "." counter(h4counter) ". " ;
 }
+/* PRINT STYLE */
+ @media print {
+	#leftpanel {
+		display:none;
+	}
+	#main {
+		height:100%;
+		margin:0;
+		width:100%;
+		overflow:visible;
+	}
+	.Page {
+		margin:5px;
+		padding:5px;
+		border:1px solid lightgrey;
+		page-break-after:always;
+	}
+
+ }
