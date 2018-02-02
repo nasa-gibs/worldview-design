@@ -1,0 +1,147 @@
+body {
+margin:0;
+padding:0;
+font-family:verdana,geneva,lucida,'lucida grande',arial,helvetica,sans-serif;
+font-size:12px;
+height:100%;
+}
+.noborder {
+border:0 none;
+}
+
+/* LEFT PANEL */
+#leftpanel {
+padding:0;
+vertical-align:top;
+
+position:fixed;
+left:0;
+top:0;
+width:152px;
+height:100%; /* works only if parent container is assigned a height value */
+margin:0;
+overflow:auto;
+width:188px;
+}
+#leftpanel .ThumbContainer {
+    float:left;
+    margin:10px;
+    width:152px;
+}
+
+.ThumbContainer img {
+border:0 none;
+width:150px;
+}
+.ThumbContainer a:hover {
+border-color:darkBlue;
+}
+.ThumbContainer a {
+border:1px dashed lightgrey;
+color:grey;
+display:block;
+text-decoration:none;
+}
+.ThumbContainer a .number {
+font-size:small;
+}
+/* MAIN PANEL */
+#main {
+margin-left:190px;
+overflow:auto;
+}
+
+.Page {
+padding:0 5px;
+}
+
+.MainNumber {
+color:lightgrey;
+display:block;
+float:right;
+|margin:-25px 5px 0 0 ;
+}
+.pageTitle {
+    font-size:16px;
+    border:1px solid black;
+    padding:4px;
+}
+.raster {
+border:1px dotted lightgrey;
+margin:10px;
+width:100%;
+}
+/* NOTE STYLE */
+hr {
+border: medium none ;
+margin: 0pt;
+background-color: lightgrey;
+height: 1px;
+}
+h1 {
+border-bottom:1px solid black;
+font-size:16px;
+}
+h2 {
+font-size:14px;
+border-bottom:1px dotted;
+}
+h3 {
+font-size:12px;
+}
+h4 {
+font-size:10px;
+}
+
+/* PRINT STYLE */
+ @media print {
+    #leftpanel {
+        display:none;
+    }
+    #main {
+    height:100%;
+    margin:0;
+    width:100%;
+    overflow:visible;
+    }
+    .Page {
+        margin:5px;
+        padding:5px;
+        border:1px solid lightgrey;
+        page-break-after:always;
+    }
+
+ }
+/*counter*/
+body{
+    counter-reset:h1counter pagecounter;
+}
+.pageTitle {
+    counter-increment:pagecounter;
+}
+/* .pageTitle:before {
+    content:"Page " counter(pagecounter) " - ";
+} */
+h1{counter-reset:h2counter;}
+h1:before{
+    counter-increment:h1counter;
+    content:counter(h1counter)  ". " ;
+}
+
+h2 { counter-reset:h3counter;}
+h2:before{
+counter-increment:h2counter;
+content:counter(h1counter) "." counter(h2counter) ". " ;
+}
+
+h3 {counter-reset:h4counter}
+h3:before{
+counter-increment:h3counter;
+content:counter(h1counter) "." counter(h2counter) "." counter(h3counter)  ". " ;
+}
+
+h4:before
+{
+counter-increment:h4counter;
+content:counter(h1counter) "." counter(h2counter) "." counter(h3counter) "." counter(h4counter) ". " ;
+}
